@@ -1,0 +1,6 @@
+{
+  "name": "Spring Boot twitter",
+  "description": "This is a small  twitter application.",
+  "repository": "https://github.com/torikraju/twitterApp",
+  "image": "heroku/java"
+}
