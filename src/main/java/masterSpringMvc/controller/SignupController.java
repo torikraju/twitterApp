@@ -14,23 +14,23 @@ import masterSpringMvc.config.AuthenticatingSignInAdapter;
 @Controller
 public class SignupController {
 
-	private final ProviderSignInUtils signInUtils;
+    private final ProviderSignInUtils signInUtils;
 
-	@Autowired
-	public SignupController(ConnectionFactoryLocator connectionFactoryLocator,
-			UsersConnectionRepository connectionRepository) {
-		signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
-	}
+    @Autowired
+    public SignupController(ConnectionFactoryLocator connectionFactoryLocator,
+                            UsersConnectionRepository connectionRepository) {
+        signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
+    }
 
-	@RequestMapping(value = "/signup")
-	public String signup(WebRequest request) {
-		Connection<?> connection = signInUtils.getConnectionFromSession(request);
-		if (connection != null) {
-			AuthenticatingSignInAdapter.authenticate(connection);
-			signInUtils.doPostSignUp(connection.getDisplayName(), request);
-		}
-		return "redirect:/profile";
+    @RequestMapping(value = "/signup")
+    public String signup(WebRequest request) {
+        Connection<?> connection = signInUtils.getConnectionFromSession(request);
+        if (connection != null) {
+            AuthenticatingSignInAdapter.authenticate(connection);
+            signInUtils.doPostSignUp(connection.getDisplayName(), request);
+        }
+        return "redirect:/profile";
 
-	}
+    }
 
 }
